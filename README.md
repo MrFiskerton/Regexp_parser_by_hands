@@ -14,6 +14,7 @@ There is a left recursion.
 
 ##After removing left recursion.
 
+
 >0. `<RE>              → <concatenation> <RE_p>`
 >0. `<RE_p>            → "|" <concatenation> <RE_p>`
 >0. `<RE_p>            → ε`

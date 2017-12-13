@@ -1,5 +1,6 @@
 ##Complete Grammar for Perl-style regular expressions.
 
+
 >0. `<RE>            → <union>`
 >0. `<RE>            → <simple-RE>`
 >0. `<union>         → <RE> "|" <simple-RE>`
