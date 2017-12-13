@@ -2,39 +2,39 @@
 Complete Grammar for Perl-style regular expressions.
 
 >0. `<RE>            → <union>`
-   `<RE>            → <simple-RE>`
+>0. `<RE>            → <simple-RE>`
 >0. `<union>         → <RE> "|" <simple-RE>`
 >0. `<simple-RE>     → <concatenation>`
-   `<simple-RE>     → <basic-RE>`
+>0. `<simple-RE>     → <basic-RE>`
 >0. `<concatenation> → <simple-RE> <basic-RE>`
 >0. `<basic-RE>      → <asterisk>`
-   `<basic-RE>      → <plus>`
-   `<basic-RE>      → <elementary-RE>`
+>0. `<basic-RE>      → <plus>`
+>0. `<basic-RE>      → <elementary-RE>`
 >0. `<asterisk>      → <elementary-RE> "*"`
 >0. `<plus>          → <elementary-RE> "+"`
 >0. `<elementary-RE> → <group>`
->   `<elementary-RE> → <any>`
->   `<elementary-RE> → <eos>`
->   `<elementary-RE> → <letter>`
->   `<elementary-RE> → <set>`
+>0. `<elementary-RE> → <any>`
+>0. `<elementary-RE> → <eos>`
+>0. `<elementary-RE> → <letter>`
+>0. `<elementary-RE> → <set>`
 >0. `<group>         → "(" <RE> ")"`
 >0. `<any>           → "."`
 >0. `<eos>           → "$"`
 >0. `<letter>        → any non methacharacter`
->   `<letter>        → "\" methacharacter`
+>0. `<letter>        → "\" methacharacter`
 >0. `<set>           → <positive-set>`
->   `<set>           → <negative-set>`
+>0. `<set>           → <negative-set>`
 >0. `<positive-set>  → "[" <set-items> "]"`
 >0. `<negative-set>  → "[^" <set-items> "]"`
 >0. `<set-items>     → <set-item>`
->   `<set-items>     → <set-item> <set-items>`
+>0. `<set-items>     → <set-item> <set-items>`
 >0. `<set-item>      → <range>`
->   `<set-item>      → <letter>`
+>0. `<set-item>      → <letter>`
 >0. `<range>         → <letter> "-" <letter>`
 
 Let's simplify it for our purposes.
 
->0. `<RE>            → <RE> "|" <concatenation>`
+>0. `<RE>             → <RE> "|" <concatenation>`
 >0. `<RE>             → <concatenation>`
 >0. `<concatenation>  → <concatenation> <kleene>`
 >0. `<concatenation>  → <kleene>`
@@ -48,7 +48,7 @@ There is a left recursion.
 
 ##After removing left recursion.
 
->0. `<RE>             → <concatenation> <RE_p>`
+>0. `<RE>              → <concatenation> <RE_p>`
 >0. `<RE_p>            → "|" <concatenation> <RE_p>`
 >0. `<RE_p>            → ε`
 >0. `<concatenation>   → <kleene> concatenation_p>`
