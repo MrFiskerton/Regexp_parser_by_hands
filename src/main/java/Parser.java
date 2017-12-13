@@ -20,7 +20,7 @@ public class Parser {
             case LPAREN:
                 return new Tree("<RE>", concatenation(), RE_p());
             default:
-                throw new AssertionError();
+                return unexpected_token("<RE>");
         }
     }
 
@@ -34,7 +34,7 @@ public class Parser {
             case RPAREN://
                 return new Tree("<RE_p>");
             default:
-                throw new AssertionError();
+                return unexpected_token("<RE_p>");
         }
     }
 
@@ -45,7 +45,7 @@ public class Parser {
             case LPAREN:
                 return new Tree("<concat>", kleene(), concatenation_p());
             default:
-                throw new AssertionError();
+                return unexpected_token("<concatenation>");
         }
     }
 
@@ -60,7 +60,7 @@ public class Parser {
             case RPAREN:
                 return new Tree("<concat_p>", new Tree("ε"));
             default:
-                throw new AssertionError();
+                return unexpected_token("<concatenation_p>");
         }
     }
 
@@ -77,13 +77,14 @@ public class Parser {
                 skip(Token.RPAREN);
                 return new Tree("<kleene>", new Tree("("), REinParens, new Tree(")"), kleene_p());
             default:
-                throw new AssertionError();
+                return unexpected_token("<kleene>");
         }
     }
 
     private Tree kleene_p() throws ParseException {
         debug_message("<kleene_p>");
         if (compareAndSkip(Token.ASTERISK)) return new Tree("<kleene_p>", new Tree("*"), kleene_p());
+        if (compareAndSkip(Token.PLUS))     return new Tree("<kleene_p>", new Tree("+"), kleene_p());
         return new Tree("<kleene_p>", new Tree("ε"));
     }
 
@@ -104,6 +105,10 @@ public class Parser {
 
     private void debug_message(String where) {
         //System.out.println(where + " found: " + lexer.getCurToken() + " at position " + lexer.getCurPos());
+    }
+
+    private Tree unexpected_token(String where) throws ParseException {
+        throw new ParseException("In rule " + where + " unexpected token at position ", lexer.getCurPos());
     }
 
     final static String[] NON_TERMINALS =

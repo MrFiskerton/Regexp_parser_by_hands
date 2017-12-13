@@ -5,6 +5,7 @@
 >0. `<concatenation>  → <concatenation> <kleene>`
 >0. `<concatenation>  → <kleene>`
 >0. `<kleene>         → <kleene>"*"`
+>0. `<kleene>         → <kleene>"+"`
 >0. `<kleene>         → "("<RE>")"`
 >0. `<kleene>         → n`
 >
@@ -23,6 +24,7 @@ There is a left recursion.
 >0. `<kleene>          → n <kleene_p>`
 >0. `<kleene>          → "("<RE>")" <kleene_p>`
 >0. `<kleene_p>        → "*"<kleene_p>`
+>0. `<kleene_p>        → "+"<kleene_p>`
 >0. `<kleene_p>        → ε`
 
 
@@ -45,5 +47,5 @@ There is a left recursion.
  `<concatenation>`  | n, (         | &#124;, $, )
  `<concatenation_p>`| ε, n, (      | n, (, &#124;, $, )
  `<kleene>`         | n, (         | n, (, &#124;, $, )
- `<kleene_p>`       | *, ε         | n, (, &#124;, $, )
+ `<kleene_p>`       | *, +, ε         | n, (, &#124;, $, )
 
