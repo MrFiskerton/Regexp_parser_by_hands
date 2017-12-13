@@ -1,5 +1,4 @@
-##Complete Grammar for Perl-style regular expressions.
-
+## Complete Grammar for Perl-style regular expressions.
 
 >0. `<RE>            → <union>`
 >0. `<RE>            → <simple-RE>`
